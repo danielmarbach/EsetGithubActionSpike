@@ -12,12 +12,23 @@ jobs:
         uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
-      - name: Install Eset
+      - name: Cache Eset
+        id: cache-eset
+        uses: actions/cache@v2
+        with:
+          path: C:\ESET\
+          key: ${{ runner.os }}-eset          
+      - name: Download Eset
+        if: steps.cache-eset.outputs.cache-hit != 'true'
         run: |
             Import-Module BitsTransfer
             Start-BitsTransfer -Source https://download.eset.com/com/eset/apps/business/eea/windows/latest/eea_nt64.msi
+        shell: pwsh
+      - name: Install Eset
+        if: steps.cache-eset.outputs.cache-hit != 'true'
+        run: |
             msiexec /i eea_nt64.msi /qn /norestart APPDIR=C:\ESET\ PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
-            echo "C:\ESET\" >> $GITHUB_PATH
         shell: pwsh
       - name: Scan
-        run: . ecls /subdir /files /arch /clean-mode=none
+        run: |
+           . "C:\ESET\ecls.exe" /subdir /files /arch /clean-mode=none
