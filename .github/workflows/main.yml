@@ -31,4 +31,5 @@ jobs:
         shell: pwsh
       - name: Scan
         run: |
-           . "C:\ESET\ecls.exe" /subdir /files /arch /clean-mode=none
+           cd C:\ESET
+           ls
