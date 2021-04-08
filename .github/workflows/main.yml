@@ -30,9 +30,9 @@ jobs:
       - name: Install Eset
         if: steps.cache-eset.outputs.cache-hit != 'true'
         run: |
-            msiexec /i eea_nt64.msi /qn /norestart APPDIR=C:\ESET\ PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
+            msiexec /i eea_nt64.msi /qn /norestart PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
         shell: pwsh
       - name: Scan
         run: |
-           cd C:\ESET
+           cd C:\Program Files\ESET\ESET Security\
            ls
