@@ -16,3 +16,7 @@ jobs:
         run: |
           choco install eset-antivirus
         shell: pwsh
+      - name: scan
+        run: |
+          . ecls /base-dir="C:\Program Files\ESET\ESET File Security\Modules" /subdir /files /arch /clean-mode=none /log-file=C:\eset-scanlog.txt
+        shell: pwsh
