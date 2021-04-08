@@ -17,7 +17,7 @@ jobs:
             Import-Module BitsTransfer
             Start-BitsTransfer -Source https://download.eset.com/com/eset/apps/business/eea/windows/latest/eea_nt64.msi
             msiexec /i eea_nt64.msi /qn /norestart APPDIR=C:\ESET\ PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
-            echo "::add-path::C:\ESET\"
+            echo "C:\ESET\" >> $GITHUB_PATH
         shell: pwsh
       - name: Scan
         run: . ecls /subdir /files /arch /clean-mode=none
