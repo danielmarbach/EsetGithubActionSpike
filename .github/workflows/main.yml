@@ -21,7 +21,7 @@ jobs:
       - name: Download Eset
         if: steps.cache-eset.outputs.cache-hit != 'true'
         run: |
-            curl https://download.eset.com/com/eset/apps/business/eea/windows/latest/eea_nt64.msi --output eea_net64.msi
+            (New-Object System.Net.WebClient).DownloadFile("https://download.eset.com/com/eset/apps/business/eea/windows/latest/eea_nt64.msi", "eea_net64.msi")
         shell: pwsh
       - name: Install Eset
         if: steps.cache-eset.outputs.cache-hit != 'true'
