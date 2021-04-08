@@ -19,6 +19,4 @@ jobs:
             msiexec /i eea_nt64.msi /qn /norestart APPDIR=C:\ESET\ PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
         shell: pwsh
       - name: Scan
-        run: |
-          & "C:\ESET\ecls.exe" /subdir /files /arch /clean-mode=none
-        shell: pwsh
+        run: C:/ESET/ecls.exe /subdir /files /arch /clean-mode=none
