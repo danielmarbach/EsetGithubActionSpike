@@ -34,5 +34,5 @@ jobs:
         shell: pwsh
       - name: Scan
         run: |
-           cd C:\Program Files\ESET\ESET Security\
+           cd "C:\Program Files\ESET\ESET Security\"
            ls
