@@ -14,9 +14,11 @@ jobs:
           fetch-depth: 0
       - name: Install Eset
         run: |
-          choco install eset-antivirus
+            Import-Module BitsTransfer
+            Start-BitsTransfer -Source https://download.eset.com/com/eset/apps/business/eea/windows/latest/eea_nt64.msi
+            msiexec /i eea_nt64.msi /qn /norestart APPDIR=C:\ESET\ PRODUCT_LANG=1033 PRODUCT_LANG_CODE=en-us
         shell: pwsh
       - name: Scan
         run: |
-          & "C:\Program Files\ESET\ESET Security\ecls.exe" /subdir /files /arch /clean-mode=none
+          & "C:\ESET\ecls.exe" /subdir /files /arch /clean-mode=none
         shell: pwsh
